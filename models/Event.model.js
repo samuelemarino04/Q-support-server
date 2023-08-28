@@ -17,11 +17,14 @@ const eventSchema = new Schema(
         },
         attendees: [{
             type: Schema.Types.ObjectId,
-            ref: 'Client'
+            ref: 'User'
         }],
         address: {
-            type: String,
-            required: [true, 'address is required.']
+            street: String,
+            number: Number,
+            zipcode: Number,
+            city: String,
+            country: String,
         },
         location: {
             type: {
@@ -37,9 +40,9 @@ const eventSchema = new Schema(
             type: Date,
             required: [true, 'date is required.']
         },
-        organised_by: {
-            type: String,
-            ref: 'Creative'
+        organizer: {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
         },
     },
     {

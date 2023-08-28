@@ -1,20 +1,23 @@
 const { Schema, model } = require("mongoose");
 
-const creativeSchema = new Schema(
+const userSchema = new Schema(
     {
         username: {
             type: String,
             required: [true, 'Username is required.'],
-            max: 24
+            maxlength: [24, 'Maximum name length is 24']
+        },
+
+        role: {
+            type: String,
+            enum: ["USER", "CREATIVE", "ADMIN"],
         },
         avatar: {
             type: String,
             default: 'https://i.stack.imgur.com/l60Hf.png'
         },
-        age: {
-            type: Number,
-            min: 18,
-            required: [true, 'Age is required.']
+        birth: {
+            type: Date
         },
         pronouns: {
             type: String,
@@ -27,20 +30,12 @@ const creativeSchema = new Schema(
         },
         password: {
             type: String,
-            required: [true, 'Password is required.'],
-            min: 7,
-            max: 24
         },
         images: [{
             type: String,
         }],
         audioFiles: [{
             type: String,
-        }],
-
-        subscriptions: [{
-            type: Schema.Types.ObjectId,
-            ref: 'Client',
         }]
     },
     {
@@ -48,6 +43,6 @@ const creativeSchema = new Schema(
     }
 );
 
-const Creative = model("Creative", creativeSchema);
+const User = model("User", userSchema);
 
-module.exports = Creative;
+module.exports = User;

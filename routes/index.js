@@ -1,6 +1,6 @@
 module.exports = app => {
 
-    const userRoutes = require("./client.routes")
+    const userRoutes = require("./user.routes")
     app.use('/api/user', userRoutes)
 
     const subscriptionRoutes = require("./subscription.routes")

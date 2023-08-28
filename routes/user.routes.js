@@ -1,10 +1,10 @@
 const router = require("express").Router()
 
-const Client = require('../models/Client.model')
+const User = require('../models/User.model')
 
-router.get("/getAllclients", (req, res) => {
+router.get("/getAllUsers", (req, res) => {
 
-    Client
+    User
         .find()
         .sort({ username: 1 })
         .select({ username: 1, avatar: 1 })
@@ -13,22 +13,22 @@ router.get("/getAllclients", (req, res) => {
 })
 
 
-router.get("/getOneclient/:cliente_id", (req, res, next) => {
+router.get("/getOneUser/:user_id", (req, res, next) => {
 
-    const { client_id } = req.params
+    const { user_id } = req.params
 
-    Client
-        .findById(client_id)
+    User
+        .findById(user_id)
         .then(response => res.json(response))
         .catch(err => next(err))
 })
 
 
-router.post("/saveClient", (req, res, next) => {
+router.post("/saveUser", (req, res, next) => {
 
     const { username, avatar, edad, pronouns, role, email, password, bio, location } = req.body
 
-    Client
+    User
         .create({ username, avatar, edad, pronouns, role, email, password, bio, location })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))

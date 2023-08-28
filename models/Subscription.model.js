@@ -2,14 +2,14 @@ const { Schema, model } = require("mongoose");
 
 const subscriptionSchema = new Schema(
     {
-        client: [{
+        client: {
             type: Schema.Types.ObjectId,
-            ref: 'Client',
-        }],
-        creative: [{
+            ref: 'User',
+        },
+        creative: {
             type: Schema.Types.ObjectId,
-            ref: 'Creative',
-        }],
+            ref: 'User',
+        },
         type: {
             type: String,
             enum: ['Basic', 'Premium', 'Pro']
