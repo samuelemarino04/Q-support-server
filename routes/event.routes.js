@@ -25,11 +25,12 @@ router.get("/getOneEvent/:event_id", (req, res, next) => {
 
 
 router.post("/saveEvent", (req, res, next) => {
+    console.log('LLEGO AL BACKKKKK', req.body)
 
-    const { title, icon, description, attendees, address, location, date, comments, organised_by, created_by } = req.body
+    const { title, icon, description, address, date } = req.body
 
     Event
-        .create({ title, icon, description, attendees, address, location, date, comments, organised_by, created_by })
+        .create({ title, icon, description, address, date })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 })
