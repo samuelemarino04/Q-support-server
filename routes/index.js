@@ -9,5 +9,8 @@ module.exports = app => {
     const eventRoutes = require("./event.routes")
     app.use("/api/events", eventRoutes)
 
+    const authRoutes = require("./auth.routes")
+    app.use("/api/auth", authRoutes)
+
 }
 
