@@ -27,7 +27,7 @@ router.get("/getOneSubscription/:subscription_id", (req, res, next) => {
 
 router.post("/savesubscription", (req, res, next) => {
 
-    const { client, creative, type } = req.body
+    const { client, creative, type, startDate } = req.body
 
     Subscription
         .create({})
