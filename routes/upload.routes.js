@@ -1,17 +1,12 @@
 //para subir imágenes a cloudinary  👇
 const router = require("express").Router()
-
 const uploaderMiddleware = require("../middleware/uploader.middleware")
 
-router.post('/image', uploaderMiddleware.single('imageData'), (req, res) => {
+const {
+    image
+} = require('./../controllers/upload.controllers')
 
-    if (!req.file) {
-        res.status(500).json({ errorMessage: 'Error cargando el archivo' })
-        return
-    }
-
-    res.json({ cloudinary_url: req.file.path })
-})
+router.post('/image', uploaderMiddleware.single('imageData'), image)
 
 
 module.exports = router
