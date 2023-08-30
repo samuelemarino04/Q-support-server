@@ -2,6 +2,10 @@ const { Schema, model } = require("mongoose");
 
 const subscriptionSchema = new Schema(
     {
+        title: {
+            type: String,
+            required: [true, 'title field must be filled']
+        },
         client: {
             type: Schema.Types.ObjectId,
             ref: 'User',
@@ -14,12 +18,14 @@ const subscriptionSchema = new Schema(
             type: String,
             enum: ['Basic', 'Premium', 'Pro']
         },
-
         amount: {
             type: Number,
-            required: true
+            required: [true, 'you must set an amount']
         },
-
+        description: {
+            type: String,
+            required: [true, 'you should describe this subscription']
+        },
         startDate: {
             type: Date,
             required: true

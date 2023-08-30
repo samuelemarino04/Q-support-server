@@ -21,10 +21,10 @@ const getOneSubscription = (req, res, next) => {
 
 const saveSubscription = (req, res, next) => {
 
-    const { client, creative, type, startDate, endDate, paymentMethod } = req.body
+    const { title, client, creative, type, amount, description, startDate, endDate, paymentMethod } = req.body
 
     Subscription
-        .create({ client, creative, type, startDate, endDate, paymentMethod })
+        .create({ title, client, creative, type, amount, description, startDate, endDate, paymentMethod })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }
