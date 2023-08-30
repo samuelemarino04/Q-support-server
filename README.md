@@ -1,3 +1,26 @@
+TO DO LIST =
+
+buscador con filtro ==> (modificar modelo para que dentro tenga el sector? por ejemplo: developer o musician o painter etc etc)
+
+
+el signup==>
+modifcar el avatar 
+
+pagina de perfil del creative ==> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 API ENDPOINTS
 
 Events routes

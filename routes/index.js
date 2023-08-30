@@ -1,7 +1,5 @@
 const router = require("express").Router()
 
-// TODO: DESACOPLAR CONTROLLERS
-
 const userRoutes = require("./user.routes")
 router.use('/user', userRoutes)
 
@@ -11,7 +9,6 @@ router.use("/subscriptions", subscriptionRoutes)
 const eventRoutes = require("./event.routes")
 router.use("/events", eventRoutes)
 
-//para subir imágenes a cloudinary  👇
 const uploadRoutes = require("./upload.routes")
 router.use("/upload", uploadRoutes)
 
