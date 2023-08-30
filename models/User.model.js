@@ -12,7 +12,7 @@ const userSchema = new Schema(
             type: String,
             enum: ["USER", "CREATIVE", "ADMIN"],
         },
-        avatar: {
+        imageUrl: {
             type: String,
             default: 'https://i.stack.imgur.com/l60Hf.png'
         },

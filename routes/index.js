@@ -8,6 +8,9 @@ module.exports = app => {
 
     const eventRoutes = require("./event.routes")
     app.use("/api/events", eventRoutes)
+    //para subir imágenes a cloudinary  👇
+    const uploadRoutes = require("./upload.routes")
+    app.use("/api/upload", uploadRoutes)
 
     const authRoutes = require("./auth.routes")
     app.use("/api/auth", authRoutes)
