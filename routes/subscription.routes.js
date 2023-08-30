@@ -3,7 +3,7 @@ const router = require("express").Router()
 const Subscription = require("../models/Subscription.model")
 
 
-router.get("/getAllSubscription", (req, res) => {
+router.get("/getAllSubscriptions", (req, res) => {
 
     Subscription
         .find()

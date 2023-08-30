@@ -2,7 +2,7 @@ const router = require("express").Router()
 
 const Event = require('./../models/Event.model')
 
-router.get("/getAllEvent", (req, res) => {
+router.get("/getAllEvents", (req, res) => {
 
     Event
         .find()
@@ -25,7 +25,6 @@ router.get("/getOneEvent/:event_id", (req, res, next) => {
 
 
 router.post("/saveEvent", (req, res, next) => {
-    console.log('LLEGO AL BACKKKKK', req.body)
 
     const { title, icon, description, address, date } = req.body
 

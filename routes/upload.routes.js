@@ -3,9 +3,6 @@ const router = require("express").Router()
 
 const uploaderMiddleware = require("../middleware/uploader.middleware")
 
-
-uploaderMiddleware
-
 router.post('/image', uploaderMiddleware.single('imageData'), (req, res) => {
 
     if (!req.file) {

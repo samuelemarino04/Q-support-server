@@ -1,19 +1,21 @@
-module.exports = app => {
+const router = require("express").Router()
 
-    const userRoutes = require("./user.routes")
-    app.use('/api/user', userRoutes)
+// TODO: DESACOPLAR CONTROLLERS
 
-    const subscriptionRoutes = require("./subscription.routes")
-    app.use("/api/subscriptions", subscriptionRoutes)
+const userRoutes = require("./user.routes")
+router.use('/user', userRoutes)
 
-    const eventRoutes = require("./event.routes")
-    app.use("/api/events", eventRoutes)
-    //para subir imágenes a cloudinary  👇
-    const uploadRoutes = require("./upload.routes")
-    app.use("/api/upload", uploadRoutes)
+const subscriptionRoutes = require("./subscription.routes")
+router.use("/subscriptions", subscriptionRoutes)
 
-    const authRoutes = require("./auth.routes")
-    app.use("/api/auth", authRoutes)
+const eventRoutes = require("./event.routes")
+router.use("/events", eventRoutes)
 
-}
+//para subir imágenes a cloudinary  👇
+const uploadRoutes = require("./upload.routes")
+router.use("/upload", uploadRoutes)
 
+const authRoutes = require("./auth.routes")
+router.use("/auth", authRoutes)
+
+module.exports = router

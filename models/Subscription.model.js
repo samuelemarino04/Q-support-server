@@ -28,13 +28,15 @@ const subscriptionSchema = new Schema(
                 },
                 cardNumber: {
                     type: Number,
-                    maxlenght: 16,
-                    minlenght: 16,
+                    validate: {
+                        validator: value => value.length === 16,
+                        message: 'Card number is not correct'
+                    }
                 },
                 cvv: {
                     type: Number,
-                    maxlenght: 3,
-                    minlenght: 3,
+                    maxlenght: [3, 'Card CVV format is not correct'],
+                    minlenght: [3, 'Card CVV format is not correct'],
                 },
             },
         },
