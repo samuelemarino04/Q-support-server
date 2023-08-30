@@ -14,6 +14,12 @@ const subscriptionSchema = new Schema(
             type: String,
             enum: ['Basic', 'Premium', 'Pro']
         },
+
+        amount: {
+            type: Number,
+            required: true
+        },
+
         startDate: {
             type: Date,
             required: true
