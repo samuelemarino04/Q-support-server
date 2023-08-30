@@ -27,10 +27,10 @@ router.get("/getOneSubscription/:subscription_id", (req, res, next) => {
 
 router.post("/savesubscription", (req, res, next) => {
 
-    const { client, creative, type, startDate } = req.body
+    const { client, creative, type, startDate, endDate, paymentMethod } = req.body
 
     Subscription
-        .create({})
+        .create({ client, creative, type, startDate, endDate, paymentMethod })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 })
