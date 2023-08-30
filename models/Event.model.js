@@ -20,7 +20,11 @@ const eventSchema = new Schema(
             ref: 'User'
         }],
         address: {
-            type: String,
+            street: String,
+            number: Number,
+            zipcode: Number,
+            city: String,
+            country: String
         },
         // location: {
         //     type: {

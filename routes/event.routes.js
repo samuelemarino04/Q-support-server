@@ -26,7 +26,7 @@ router.get("/getOneEvent/:event_id", (req, res, next) => {
 
 router.post("/saveEvent", (req, res, next) => {
 
-    const { title, icon, description, address, date } = req.body
+    const { title, icon, description, date, address } = req.body
 
     Event
         .create({ title, icon, description, address, date })
