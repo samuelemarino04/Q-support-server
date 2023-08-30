@@ -8,6 +8,7 @@ const jwt = require('jsonwebtoken')
 const { verifyToken } = require("../middleware/verifyToken")
 
 
+
 router.post('/signup', (req, res, next) => {
     const { email, password, username, birth } = req.body
 
