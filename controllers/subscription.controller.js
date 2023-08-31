@@ -5,6 +5,7 @@ const getAllSubscriptions = (req, res) => {
     Subscription
         .find()
         .sort({ createdAt: -1 })
+        .select({ title: 1, type: 1, amount: 1, description: 1, image: 1, owner: 1 })
         .then(response => res.json(response))
         .catch(err => next(err))
 }
@@ -21,10 +22,12 @@ const getOneSubscription = (req, res, next) => {
 
 const saveSubscription = (req, res, next) => {
 
-    const { title, client, creative, type, amount, description, startDate, endDate, paymentMethod } = req.body
+    const { title, type, amount, description, image } = req.body
+    const { _id: owner } = req.payload
 
     Subscription
-        .create({ title, client, creative, type, amount, description, startDate, endDate, paymentMethod })
+
+        .create({ title, type, amount, description, image, owner })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }

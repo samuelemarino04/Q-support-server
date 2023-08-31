@@ -10,9 +10,12 @@ const subscriptionSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'User',
         },
-        creative: {
+        owner: {
             type: Schema.Types.ObjectId,
             ref: 'User',
+        },
+        image: {
+            type: String,
         },
         type: {
             type: String,
@@ -20,15 +23,15 @@ const subscriptionSchema = new Schema(
         },
         amount: {
             type: Number,
-            required: [true, 'you must set an amount']
+            // required: [true, 'you must set an amount']
         },
         description: {
             type: String,
-            required: [true, 'you should describe this subscription']
+            // required: [true, 'you should describe this subscription']
         },
         startDate: {
             type: Date,
-            required: true
+            // required: true
         },
         endDate: {
             type: Date
