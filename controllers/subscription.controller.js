@@ -10,6 +10,18 @@ const getAllSubscriptions = (req, res) => {
         .catch(err => next(err))
 }
 
+const getSubscriptionsByOwner = (req, res, next) => {
+    const { _id: owner } = req.payload
+
+    Subscription
+        .find(owner)
+        .sort({ createdAt: -1 })
+        .select({ title: 1, type: 1, amount: 1, description: 1, image: 1, owner: 1 })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+}
+
+
 const getOneSubscription = (req, res, next) => {
 
     const { subscription_id } = req.params
@@ -36,5 +48,6 @@ const saveSubscription = (req, res, next) => {
 module.exports = {
     getAllSubscriptions,
     getOneSubscription,
-    saveSubscription
+    saveSubscription,
+    getSubscriptionsByOwner
 }
