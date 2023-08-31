@@ -15,4 +15,9 @@ router.use("/upload", uploadRoutes)
 const authRoutes = require("./auth.routes")
 router.use("/auth", authRoutes)
 
+const creativeRoutes = require("./creative.routes")
+router.use("/creative", creativeRoutes)
+
+
+
 module.exports = router
