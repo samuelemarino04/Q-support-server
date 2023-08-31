@@ -33,10 +33,10 @@ const userSchema = new Schema(
         },
         images: {
             type: [String],
-            validate: {
-                validator: value => value.length > 0,
-                message: 'Minimo una foto'
-            }
+            // validate: {
+            //     validator: value => value.length > 0,
+            //     message: 'Minimo una foto'
+            // }
         },
         audioFiles: [{
             type: String,
