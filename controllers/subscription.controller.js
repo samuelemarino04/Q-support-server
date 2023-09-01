@@ -19,7 +19,7 @@ const getSubscriptionsByOwner = (req, res, next) => {
         .find({ owner: owner_id })
         .sort({ createdAt: -1 })
         .select({ title: 1, type: 1, amount: 1, description: 1, image: 1, owner: 1 })
-        .then(response => console.log("ESTAS SON LAS SUSCRIPCIONES QUE HE ENCONTRADOOOOOOOOOOOOO RODRIIIII", response))
+        .then(response => res.json(response))
         .catch(err => next(err))
 }
 

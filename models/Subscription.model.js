@@ -23,11 +23,11 @@ const subscriptionSchema = new Schema(
         },
         amount: {
             type: Number,
-            // required: [true, 'you must set an amount']
+            required: [true, 'you must set an amount']
         },
         description: {
             type: String,
-            // required: [true, 'you should describe this subscription']
+            required: [true, 'you should describe this subscription']
         },
         startDate: {
             type: Date,
