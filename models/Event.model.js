@@ -26,16 +26,10 @@ const eventSchema = new Schema(
             city: String,
             country: String
         },
-        // location: {
-        //     type: {
-        //         type: String,
-        //         default: 'Point',
-        //         required: true
-        //     },
-        //     coordinates: {
-        //         type: [Number]
-        //     }
-        // },
+        owner: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+        },
         date: {
             type: Date,
             required: [true, 'date is required.']
