@@ -11,13 +11,15 @@ const getAllSubscriptions = (req, res) => {
 }
 
 const getSubscriptionsByOwner = (req, res, next) => {
-    const { _id: owner } = req.payload
+
+    const { owner_id } = req.params
+
 
     Subscription
-        .find(owner)
+        .find({ owner: owner_id })
         .sort({ createdAt: -1 })
         .select({ title: 1, type: 1, amount: 1, description: 1, image: 1, owner: 1 })
-        .then(response => res.json(response))
+        .then(response => console.log("ESTAS SON LAS SUSCRIPCIONES QUE HE ENCONTRADOOOOOOOOOOOOO RODRIIIII", response))
         .catch(err => next(err))
 }
 

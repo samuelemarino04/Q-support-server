@@ -15,6 +15,6 @@ router.get("/getOneSubscription/:subscription_id", getOneSubscription)
 
 router.post("/savesubscription", verifyToken, saveSubscription)
 
-router.post("/getSubscriptionsByOwner/:owner_id", verifyToken, getSubscriptionsByOwner)
+router.get("/getSubscriptionsByOwner/:owner_id", getSubscriptionsByOwner)
 
 module.exports = router
