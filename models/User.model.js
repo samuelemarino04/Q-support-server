@@ -31,13 +31,17 @@ const userSchema = new Schema(
         password: {
             type: String,
         },
+
         images: {
             type: [String],
-            // validate: {
-            //     validator: value => value.length > 0,
-            //     message: 'Minimo una foto'
-            // }
         },
+        // images: {
+        //     type: [String],
+        //     validate: {
+        //         validator: value => value.length > 0,
+        //         message: 'Minimo una foto'
+        //     }
+        // },
         audioFiles: [{
             type: String,
         }]
