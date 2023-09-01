@@ -14,7 +14,6 @@ const getSubscriptionsByOwner = (req, res, next) => {
 
     const { owner_id } = req.params
 
-
     Subscription
         .find({ owner: owner_id })
         .sort({ createdAt: -1 })
@@ -40,7 +39,6 @@ const saveSubscription = (req, res, next) => {
     const { _id: owner } = req.payload
 
     Subscription
-
         .create({ title, type, amount, description, image, owner })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))

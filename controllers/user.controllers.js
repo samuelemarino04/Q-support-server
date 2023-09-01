@@ -5,6 +5,7 @@ const getAllUsers = (req, res) => {
     User
         .find()
         .sort({ username: 1 })
+        // TODO: PROYECTAR
         .then(response => res.json(response))
         .catch(err => next(err))
 }
@@ -30,18 +31,32 @@ const saveUser = (req, res, next) => {
 }
 
 const editCreative = (req, res, next) => {
+
     const { id } = req.params
     const { images } = req.body
-    console.log(images)
+
     User
         .findByIdAndUpdate(id, { $push: { images } })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }
 
+const removePhotoCreative = (req, res, next) => {
+
+    const { _id } = req.payload
+    const { images } = req.body
+
+    User
+        .findByIdAndUpdate(_id, { $pull: { images: images } })
+        .then(() => res.sendStatus(200))
+        .catch(err => next(err))
+}
+
+
 module.exports = {
     getAllUsers,
     getOneUser,
     saveUser,
-    editCreative
+    editCreative,
+    removePhotoCreative
 }

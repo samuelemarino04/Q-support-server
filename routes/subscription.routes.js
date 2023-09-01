@@ -8,7 +8,6 @@ const { getAllSubscriptions,
 const { verifyToken } = require("../middleware/verifyToken")
 
 
-
 router.get("/getAllSubscriptions", getAllSubscriptions)
 
 router.get("/getOneSubscription/:subscription_id", getOneSubscription)
