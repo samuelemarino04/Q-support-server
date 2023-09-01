@@ -7,7 +7,6 @@ const userSchema = new Schema(
             required: [true, 'Username is required.'],
             maxlength: [24, 'Maximum name length is 24']
         },
-
         role: {
             type: String,
             enum: ["USER", "CREATIVE", "ADMIN"],
