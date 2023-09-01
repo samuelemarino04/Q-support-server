@@ -29,8 +29,19 @@ const saveUser = (req, res, next) => {
         .catch(err => next(err))
 }
 
+const editCreative = (req, res, next) => {
+    const { id } = req.params
+    const { images } = req.body
+    console.log(images)
+    User
+        .findByIdAndUpdate(id, { $push: { images } })
+        .then(() => res.sendStatus(200))
+        .catch(err => next(err))
+}
+
 module.exports = {
     getAllUsers,
     getOneUser,
-    saveUser
+    saveUser,
+    editCreative
 }
