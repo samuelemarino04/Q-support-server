@@ -86,6 +86,18 @@ const removeEvent = (req, res, next) => {
         .catch(err => next(err))
 }
 
+const getEventsByOwner = (req, res, next) => {
+
+    const { owner_id } = req.params
+
+    Event
+        .find({ owner: owner_id })
+        .sort({ createdAt: -1 })
+        .select({ title: 1, icon: 1, description: 1, address: 1, date: 1, owner: 1 })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+}
+
 module.exports = {
     getAllEvents,
     getOneEvent,
@@ -94,5 +106,6 @@ module.exports = {
     joinEvent,
     unjoinEvent,
     removeEvent,
-    getFilteredEvents
+    getFilteredEvents,
+    getEventsByOwner
 }
