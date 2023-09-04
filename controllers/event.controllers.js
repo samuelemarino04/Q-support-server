@@ -93,5 +93,6 @@ module.exports = {
     editEvent,
     joinEvent,
     unjoinEvent,
-    removeEvent
+    removeEvent,
+    getFilteredEvents
 }

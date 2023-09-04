@@ -4,12 +4,11 @@ const subscriptionSchema = new Schema(
     {
         title: {
             type: String,
-            required: [true, 'title field must be filled']
         },
-        client: {
+        clients: [{
             type: Schema.Types.ObjectId,
             ref: 'User',
-        },
+        }],
         owner: {
             type: Schema.Types.ObjectId,
             ref: 'User',
@@ -23,7 +22,6 @@ const subscriptionSchema = new Schema(
         },
         price: {
             type: Number,
-            required: [true, 'you must set a price']
         },
         currency: {
             type: String,
@@ -36,11 +34,10 @@ const subscriptionSchema = new Schema(
         },
         description: {
             type: String,
-            required: [true, 'you should describe this subscription']
         },
         startDate: {
             type: Date,
-            // required: true
+
         },
         endDate: {
             type: Date
@@ -51,6 +48,13 @@ const subscriptionSchema = new Schema(
                     type: String,
                 },
                 cardNumber: {
+                    type: Number,
+                    validate: {
+                        validator: value => value.length === 16,
+                        message: 'Card number is not correct'
+                    }
+                },
+                expiringDate: {
                     type: Number,
                     validate: {
                         validator: value => value.length === 16,

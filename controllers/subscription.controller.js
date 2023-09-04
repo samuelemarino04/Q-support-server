@@ -17,7 +17,6 @@ const getSubscriptionsByOwner = (req, res, next) => {
     Subscription
         .find({ owner: owner_id })
         .sort({ createdAt: -1 })
-        .select({ title: 1, type: 1, price: 1, currency: 1, paymentFrequency: 1, description: 1, image: 1, owner: 1 })
         .then(response => res.json(response))
         .catch(err => next(err))
 }
@@ -50,9 +49,6 @@ const editSubscription = (req, res, next) => {
     const { subscription_id } = req.params
     const formData = req.body
 
-    console.log("este es el id  de la subscripción que me llega al server", subscription_id)
-
-    console.log("este es  el formData que me llega al editSubscription por el req.body...", formData)
     Subscription
         .findByIdAndUpdate(subscription_id, formData)
         .then(() => res.sendStatus(200))
@@ -60,8 +56,35 @@ const editSubscription = (req, res, next) => {
 }
 
 const deleteSubscription = (req, res, next) => {
+    const { subscription_id } = req.params
 
+    Subscription
+        .findByIdAndDelete(subscription_id)
+        .then(() => res.sendStatus(200))
+        .catch(err => next(err))
 }
+
+const subscribe = (req, res, next) => {
+    const { subscription_id } = req.params
+    const loggedUser = req.payload
+
+    Subscription
+        .findByIdAndUpdate(subscription_id, { $push: { clients: loggedUser._id } })
+        .then(() => res.sendStatus(200))
+        .catch(err => next(err))
+}
+
+const unsubscribe = (req, res, next) => {
+    const { subscription_id } = req.params
+    const loggedUser = req.payload
+
+    Subscription
+        .findByIdAndUpdate(subscription_id, loggedUser._id)
+        .then(() => res.sendStatus(200))
+        .catch(err => next(err))
+}
+
+
 
 
 module.exports = {
@@ -70,5 +93,7 @@ module.exports = {
     getSubscriptionsByOwner,
     saveSubscription,
     editSubscription,
-    deleteSubscription
+    deleteSubscription,
+    subscribe,
+    unsubscribe
 }

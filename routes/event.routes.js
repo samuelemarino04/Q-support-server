@@ -1,4 +1,10 @@
-const { getAllEvents, getOneEvent, saveEvent, joinEvent, unjoinEvent, removeEvent, editEvent } = require("../controllers/event.controllers")
+const { getAllEvents,
+    getOneEvent,
+    saveEvent,
+    joinEvent,
+    unjoinEvent,
+    removeEvent,
+    editEvent, getFilteredEvents } = require("../controllers/event.controllers")
 
 const { verifyToken } = require("../middleware/verifyToken")
 const router = require("express").Router()
