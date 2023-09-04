@@ -7,7 +7,9 @@ const {
     getOneUser,
     saveUser,
     editCreative,
-    removePhotoCreative
+    removePhotoCreative,
+    // deleteUser,
+    // editProfile
 
 } = require('./../controllers/user.controllers')
 
@@ -16,6 +18,10 @@ router.get("/getAllUsers", getAllUsers)
 router.get("/getOneUser/:user_id", getOneUser)
 
 router.post("/saveUser", saveUser)
+
+// router.delete("/deleteUser/:user_id", verifyToken, deleteUser)
+
+// router.put("/:user_id/editProfile", verifyToken, editProfile)
 
 router.post("/editCreative/:id", editCreative)
 
