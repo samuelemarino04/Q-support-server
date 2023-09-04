@@ -3,15 +3,16 @@ const User = require('../models/User.model')
 
 const {
     getAllCreatives,
-    // getOneUser,
-    // saveUser
+    getFilteredCreatives,
+    getCreativesByCategory
+
 } = require('./../controllers/creative.controllers')
 
 router.get("/getAllCreatives", getAllCreatives)
 
-// router.get("/getOneUser/:user_id", getOneUser)
+router.get("/getFilteredCreatives", getFilteredCreatives)
 
-// router.post("/saveUser", saveUser)
+router.get("/getCreativesByCategory", getCreativesByCategory)
 
 
 module.exports = router

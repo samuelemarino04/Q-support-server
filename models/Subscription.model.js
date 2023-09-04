@@ -21,9 +21,18 @@ const subscriptionSchema = new Schema(
             type: String,
             enum: ['Basic', 'Premium', 'Pro']
         },
-        amount: {
+        price: {
             type: Number,
-            required: [true, 'you must set an amount']
+            required: [true, 'you must set a price']
+        },
+        currency: {
+            type: String,
+            enum: ['$', '€', '£', '¥', 'CHF', 'CAD', 'AUD', 'NOK', 'SEK', 'NZD']
+        },
+        paymentFrequency: {
+            type: String,
+            enum: ['monthly', 'quarterly', 'annually'],
+            default: 'monthly'
         },
         description: {
             type: String,

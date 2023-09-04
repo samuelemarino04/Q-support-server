@@ -19,6 +19,21 @@ const getOneEvent = (req, res, next) => {
         .catch(err => next(err))
 }
 
+const getFilteredEvents = (req, res) => {
+
+    const { searchQuery } = req.query
+
+    console.log("este es el objeto category que le estoy pasando a la función", searchQuery)
+
+    Event
+        .find({ "address.city": { $regex: new RegExp(searchQuery, 'i') } })
+        .sort({ "address.city": 1 })
+        .then(response => {
+            res.json(response)
+        })
+        .catch(err => console.log(err))
+}
+
 const saveEvent = (req, res, next) => {
 
     const { title, icon, description, address, date } = req.body
@@ -32,5 +47,6 @@ const saveEvent = (req, res, next) => {
 module.exports = {
     getAllEvents,
     getOneEvent,
+    getFilteredEvents,
     saveEvent
 }

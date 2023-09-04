@@ -18,6 +18,20 @@ const userSchema = new Schema(
         birth: {
             type: Date
         },
+        category: {
+            type: String,
+            enum: ["Web Developer",
+                "Musician",
+                "Visual artist",
+                "Writer",
+                "Illustrator",
+                "Video Creator",
+                "Gaming Creator",
+                "Podcast Creator",
+                "Non-profit",
+                "Local Business",
+                "Tutorials Creator"]
+        },
         pronouns: {
             type: String,
         },
