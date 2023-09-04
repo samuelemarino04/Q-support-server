@@ -1,10 +1,4 @@
-const { getAllEvents,
-    getOneEvent,
-    saveEvent,
-    joinEvent,
-    unjoinEvent,
-    removeEvent,
-    editEvent, getFilteredEvents } = require("../controllers/event.controllers")
+const { getAllEvents, getOneEvent, saveEvent, joinEvent, unjoinEvent, removeEvent, editEvent, getFilteredEvents, getEventsByOwner } = require("../controllers/event.controllers")
 
 const { verifyToken } = require("../middleware/verifyToken")
 const router = require("express").Router()
@@ -12,6 +6,7 @@ const router = require("express").Router()
 router.get("/getAllEvents", getAllEvents)
 router.get("/getOneEvent/:event_id", getOneEvent)
 router.get("/getFilteredEvents", getFilteredEvents)
+router.get("/getEventsByOwner/:owner_id", getEventsByOwner)
 router.post("/saveEvent", saveEvent)
 router.put("/:event_id/edit-event", verifyToken, editEvent)
 router.post("/:event_id/join-event", verifyToken, joinEvent)
