@@ -1,3 +1,4 @@
+const { verifyToken } = require('../middleware/verifyToken')
 const Event = require('./../models/Event.model')
 
 const getAllEvents = (req, res) => {
@@ -29,8 +30,53 @@ const saveEvent = (req, res, next) => {
         .catch(err => next(err))
 }
 
+const editEvent = (req, res, next) => {
+    const { event_id } = req.params
+    const event = req.body
+
+    Event
+        .findByIdAndUpdate(event_id, event)
+        .then(response => res.json(response))
+        .catch(err => next(err))
+}
+
+const joinEvent = (req, res, next) => {
+
+    const { event_id } = req.params
+    const user_id = req.payload._id
+
+    Event
+        .findByIdAndUpdate(event_id, { $addToSet: { attendees: user_id } })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+}
+
+const unjoinEvent = (req, res, next) => {
+
+    const { event_id } = req.params
+    const user_id = req.payload._id
+
+    Event
+        .findByIdAndUpdate(event_id, { $pull: { attendees: user_id } })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+}
+
+const removeEvent = (req, res, next) => {
+    const { event_id } = req.params
+
+    Event
+        .findByIdAndDelete(event_id)
+        .then(response => res.json(response))
+        .catch(err => next(err))
+}
+
 module.exports = {
     getAllEvents,
     getOneEvent,
-    saveEvent
+    saveEvent,
+    editEvent,
+    joinEvent,
+    unjoinEvent,
+    removeEvent
 }
