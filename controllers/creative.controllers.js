@@ -9,28 +9,38 @@ const getAllCreatives = (req, res) => {
         .catch(err => next(err))
 }
 
-// const getOneUser = (req, res, next) => {
+const getFilteredCreatives = (req, res) => {
 
-//     const { user_id } = req.params
+    const { searchQuery } = req.query
 
-//     User
-//         .findById(user_id)
-//         .then(response => res.json(response))
-//         .catch(err => next(err))
-// }
+    User
+        .find({ role: 'CREATIVE', username: { $regex: new RegExp(searchQuery, 'i') } })
+        .sort({ username: 1 })
+        .then(response => {
+            res.json(response)
+        })
+        .catch(err => console.log(err))
+}
 
-// const saveUser = (req, res, next) => {
+const getCreativesByCategory = (req, res) => {
+    const { category } = req.query
+    // console.log("este es el objeto category que le estoy pasando a la función", category)
+    // console.log("este es el tipo de dato  category que le estoy pasando a la función", typeof category)
 
-//     const { username, avatar, edad, pronouns, role, email, password, bio, location } = req.body
 
-//     User
-//         .create({ username, avatar, edad, pronouns, role, email, password, bio, location })
-//         .then(() => res.sendStatus(200))
-//         .catch(err => next(err))
-// }
+    User
+        .find({ role: 'CREATIVE', category: { $in: [category] } })
+        .sort({ username: 1 })
+        .then(response => {
+            console.log("esta es la respuesta dentro del user", response)
+            res.json(response)
+        })
+        .catch(err => console.log(err))
+}
 
 module.exports = {
     getAllCreatives,
-    // getOneUser,
-    // saveUser
+    getFilteredCreatives,
+    getCreativesByCategory
+
 }

@@ -22,5 +22,4 @@ router.post("/editCreative/:id", editCreative)
 router.post("/removePhotoCreative", verifyToken, removePhotoCreative)
 
 
-
 module.exports = router
