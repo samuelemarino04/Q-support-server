@@ -79,7 +79,7 @@ const unsubscribe = (req, res, next) => {
     const loggedUser = req.payload
 
     Subscription
-        .findByIdAndUpdate(subscription_id, loggedUser._id)
+        .findByIdAndUpdate(subscription_id, { $pull: { clients: loggedUser._id } })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }

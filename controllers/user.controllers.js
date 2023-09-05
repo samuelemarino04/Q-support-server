@@ -1,3 +1,4 @@
+const Subscription = require('../models/Subscription.model')
 const User = require('../models/User.model')
 
 const getAllUsers = (req, res) => {
@@ -5,7 +6,6 @@ const getAllUsers = (req, res) => {
     User
         .find()
         .sort({ username: 1 })
-        // TODO: PROYECTAR
         .then(response => res.json(response))
         .catch(err => next(err))
 }
@@ -30,7 +30,6 @@ const saveUser = (req, res, next) => {
         .catch(err => next(err))
 }
 
-//borrar perfiles cualquier usuario
 const deleteUser = (req, res, next) => {
     const { user_id } = req.params
     User
@@ -40,7 +39,16 @@ const deleteUser = (req, res, next) => {
 
 }
 
-//edicion fotos
+const editProfile = (req, res, next) => {
+    const { user_id } = req.params
+    const userData = req.body
+
+    User
+        .findByIdAndUpdate(user_id, userData)
+        .then(response => res.json(response))
+        .catch(err => next(err))
+}
+
 const editCreative = (req, res, next) => {
 
     const { id } = req.params
@@ -51,7 +59,6 @@ const editCreative = (req, res, next) => {
         .catch(err => next(err))
 }
 
-//borrar fotos
 const removePhotoCreative = (req, res, next) => {
 
     const { _id } = req.payload
@@ -60,16 +67,29 @@ const removePhotoCreative = (req, res, next) => {
     User
         .findByIdAndUpdate(_id, { $pull: { images: images } })
         .then(() => res.sendStatus(200))
-        // .then(response => res.jason(response))
         .catch(err => next(err))
 }
 
+const getUserSubscriptions = (req, res, next) => {
+
+    const { _id } = req.payload
+
+    Subscription
+        .find({ clients: _id })
+        .then(subscriptions => {
+            res.json(subscriptions)
+        })
+        .catch(err => next(err))
+
+}
 
 module.exports = {
     getAllUsers,
     getOneUser,
     saveUser,
     deleteUser,
+    editProfile,
     editCreative,
-    removePhotoCreative
+    removePhotoCreative,
+    getUserSubscriptions
 }

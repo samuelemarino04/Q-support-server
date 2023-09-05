@@ -9,9 +9,7 @@ const {
 } = require('./../controllers/creative.controllers')
 
 router.get("/getAllCreatives", getAllCreatives)
-
 router.get("/getFilteredCreatives", getFilteredCreatives)
-
 router.get("/getCreativesByCategory", getCreativesByCategory)
 
 
