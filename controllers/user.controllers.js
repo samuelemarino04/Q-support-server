@@ -29,25 +29,16 @@ const saveUser = (req, res, next) => {
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }
+
 //borrar perfiles cualquier usuario
-// const deleteUser = (req, res, next) => {
-//     const { user_id } = req.params
-//     User
-//         .findByIdAndDelete(user_id)
-//         .then(response => res.json(response))
-//         .catch(err => next(err))
+const deleteUser = (req, res, next) => {
+    const { user_id } = req.params
+    User
+        .findByIdAndDelete(user_id)
+        .then(response => res.json(response))
+        .catch(err => next(err))
 
-// }
-//editar perfiles cualquier usuario
-// const editProfile = (req, res, next) => {
-//     const { user_id } = req.params
-//     const user = req.body
-
-//     User
-//         .findByIdAndUpdate(user_id, user)
-//         .then(response => res.json(response))
-//         .catch(err => next(err))
-// }
+}
 
 //edicion fotos
 const editCreative = (req, res, next) => {
@@ -59,6 +50,7 @@ const editCreative = (req, res, next) => {
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }
+
 //borrar fotos
 const removePhotoCreative = (req, res, next) => {
 
@@ -77,8 +69,7 @@ module.exports = {
     getAllUsers,
     getOneUser,
     saveUser,
-    // deleteUser,
-    // editProfile,
+    deleteUser,
     editCreative,
     removePhotoCreative
 }
