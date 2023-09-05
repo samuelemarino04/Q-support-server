@@ -24,8 +24,6 @@ const getFilteredEvents = (req, res) => {
 
     const { searchQuery } = req.query
 
-    console.log("este es el objeto category que le estoy pasando a la función", searchQuery)
-
     Event
         .find({ "address.city": { $regex: new RegExp(searchQuery, 'i') } })
         .sort({ "address.city": 1 })

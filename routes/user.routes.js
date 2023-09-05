@@ -8,9 +8,9 @@ const {
     saveUser,
     editCreative,
     removePhotoCreative,
+    getUserSubscriptions,
+    editProfile
     // deleteUser,
-    // editProfile
-
 } = require('./../controllers/user.controllers')
 
 router.get("/getAllUsers", getAllUsers)
@@ -21,11 +21,13 @@ router.post("/saveUser", saveUser)
 
 // router.delete("/deleteUser/:user_id", verifyToken, deleteUser)
 
-// router.put("/:user_id/editProfile", verifyToken, editProfile)
+router.put("/editProfile/:user_id", verifyToken, editProfile)
 
-router.post("/editCreative/:id", editCreative)
+router.post("/editCreative/:id", verifyToken, editCreative)
 
 router.post("/removePhotoCreative", verifyToken, removePhotoCreative)
+
+router.get("/userSubscriptions/:_id", verifyToken, getUserSubscriptions)
 
 
 module.exports = router

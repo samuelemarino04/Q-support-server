@@ -24,15 +24,11 @@ const getFilteredCreatives = (req, res) => {
 
 const getCreativesByCategory = (req, res) => {
     const { category } = req.query
-    // console.log("este es el objeto category que le estoy pasando a la función", category)
-    // console.log("este es el tipo de dato  category que le estoy pasando a la función", typeof category)
-
 
     User
         .find({ role: 'CREATIVE', category: { $in: [category] } })
         .sort({ username: 1 })
         .then(response => {
-            console.log("esta es la respuesta dentro del user", response)
             res.json(response)
         })
         .catch(err => console.log(err))
