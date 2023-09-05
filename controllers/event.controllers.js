@@ -36,9 +36,10 @@ const getFilteredEvents = (req, res) => {
 const saveEvent = (req, res, next) => {
 
     const { title, icon, description, address, date } = req.body
+    const { _id: owner } = req.payload
 
     Event
-        .create({ title, icon, description, address, date })
+        .create({ title, icon, description, address, date, owner })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }
@@ -91,7 +92,6 @@ const getEventsByOwner = (req, res, next) => {
     Event
         .find({ owner: owner_id })
         .sort({ createdAt: -1 })
-        .select({ title: 1, icon: 1, description: 1, address: 1, date: 1, owner: 1 })
         .then(response => res.json(response))
         .catch(err => next(err))
 }
