@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 
 const signup = (req, res, next) => {
 
-    const { username, birth, avatar, role, category, email, password, pronouns, aboutInfo } = req.body
+    const { username, birth, avatar, role, category, email, password, pronouns, aboutInfo, backgroundImage } = req.body
 
     if (password.length < 2) {
         res.status(400).json({ message: 'Password must have at least 3 characters' })
@@ -23,7 +23,7 @@ const signup = (req, res, next) => {
             const salt = bcrypt.genSaltSync(saltRounds)
             const hashedPassword = bcrypt.hashSync(password, salt)
 
-            return User.create({ username, birth, avatar, role, category, email, password: hashedPassword, pronouns, aboutInfo })
+            return User.create({ username, birth, avatar, role, category, email, password: hashedPassword, pronouns, aboutInfo, backgroundImage })
         })
         .then(() => res.sendStatus(201))
         .catch(err => next(err))
