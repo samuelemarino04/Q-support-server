@@ -20,11 +20,17 @@ const eventSchema = new Schema(
             ref: 'User'
         }],
         address: {
-            street: String,
-            number: Number,
-            zipcode: Number,
-            city: String,
-            country: String
+            type: String,
+            required: [true, 'address is required.']
+        },
+        location: {
+            type: {
+                type: String,
+                default: 'Point'
+            },
+            coordinates: {
+                type: [Number]
+            }
         },
         owner: {
             type: Schema.Types.ObjectId,

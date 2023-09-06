@@ -44,7 +44,7 @@ const deleteUser = (req, res, next) => {
 const editProfile = (req, res, next) => {
 
     const { user_id } = req.params
-    const userData = req.body
+    const { userData } = req.body
 
     User
         .findByIdAndUpdate(user_id, userData)
@@ -61,6 +61,18 @@ const editCreative = (req, res, next) => {
         .findByIdAndUpdate(user_id, { $push: { images } })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
+}
+
+const editCardInfo = (req, res, next) => {
+    console.log("esto es lo que me lelga por reqbody", req.body)
+    const { user_id } = req.params
+    const { formData } = req.body
+
+    User
+        .findByIdAndUpdate(user_id, { cardData: formData })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+
 }
 
 const removePhotoCreative = (req, res, next) => {
@@ -93,6 +105,7 @@ module.exports = {
     deleteUser,
     editProfile,
     editCreative,
+    editCardInfo,
     removePhotoCreative,
     getUserSubscriptions
 }

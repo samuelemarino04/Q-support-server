@@ -25,8 +25,8 @@ const getFilteredEvents = (req, res) => {
     const { searchQuery } = req.query
 
     Event
-        .find({ "address.city": { $regex: new RegExp(searchQuery, 'i') } })
-        .sort({ "address.city": 1 })
+        .find({ "address": { $regex: new RegExp(searchQuery, 'i') } })
+        .sort({ "address": 1 })
         .then(response => {
             res.json(response)
         })
@@ -35,11 +35,11 @@ const getFilteredEvents = (req, res) => {
 
 const saveEvent = (req, res, next) => {
 
-    const { title, icon, description, address, date } = req.body
+    const { title, icon, description, address, location, date } = req.body
     const { _id: owner } = req.payload
 
     Event
-        .create({ title, icon, description, address, date, owner })
+        .create({ title, icon, description, address, location, date, owner })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }
