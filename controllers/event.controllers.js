@@ -35,11 +35,11 @@ const getFilteredEvents = (req, res) => {
 
 const saveEvent = (req, res, next) => {
 
-    const { title, icon, description, address, date } = req.body
+    const { title, icon, description, address, location, date } = req.body
     const { _id: owner } = req.payload
 
     Event
-        .create({ title, icon, description, address, date, owner })
+        .create({ title, icon, description, address, location, date, owner })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }
