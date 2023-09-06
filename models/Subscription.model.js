@@ -42,32 +42,6 @@ const subscriptionSchema = new Schema(
         endDate: {
             type: Date
         },
-        paymentMethod: {
-            card: {
-                cardHolder: {
-                    type: String,
-                },
-                cardNumber: {
-                    type: Number,
-                    validate: {
-                        validator: value => value.length === 16,
-                        message: 'Card number is not correct'
-                    }
-                },
-                expiringDate: {
-                    type: Number,
-                    validate: {
-                        validator: value => value.length === 16,
-                        message: 'Card number is not correct'
-                    }
-                },
-                cvv: {
-                    type: Number,
-                    maxlenght: [3, 'Card CVV format is not correct'],
-                    minlenght: [3, 'Card CVV format is not correct'],
-                },
-            },
-        },
     },
     {
         timestamps: true

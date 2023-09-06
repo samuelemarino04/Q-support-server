@@ -41,17 +41,41 @@ const userSchema = new Schema(
             unique: true,
             lowercase: true,
         },
+        aboutInfo: {
+            type: String,
+        },
+        backgroundImage: {
+            type: String
+        },
+        Posts: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Post',
+            }
+        ],
         password: {
             type: String,
         },
-
-        images: {
-            type: [String],
-        },
-
+        images: [{
+            type: String,
+        }],
         audioFiles: [{
             type: String,
-        }]
+        }],
+        cardData: {
+            cardHolder: {
+                type: String,
+            },
+            cardNumber: {
+                type: Number,
+            },
+            expiringDate: {
+                type: Number,
+            },
+            cvv: {
+                type: Number,
+            },
+        },
     },
     {
         timestamps: true

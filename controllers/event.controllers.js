@@ -25,8 +25,8 @@ const getFilteredEvents = (req, res) => {
     const { searchQuery } = req.query
 
     Event
-        .find({ "address.city": { $regex: new RegExp(searchQuery, 'i') } })
-        .sort({ "address.city": 1 })
+        .find({ "address": { $regex: new RegExp(searchQuery, 'i') } })
+        .sort({ "address": 1 })
         .then(response => {
             res.json(response)
         })
