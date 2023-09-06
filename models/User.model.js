@@ -10,13 +10,16 @@ const userSchema = new Schema(
         role: {
             type: String,
             enum: ["USER", "CREATIVE", "ADMIN"],
+            required: [true, 'Role is required.']
         },
         avatar: {
             type: String,
             default: 'https://i.stack.imgur.com/l60Hf.png'
         },
         birth: {
-            type: Date
+            type: Date,
+            required: [true, 'Birth is required.']
+
         },
         category: {
             type: String,
@@ -30,7 +33,8 @@ const userSchema = new Schema(
                 "Podcast Creator",
                 "Non-profit",
                 "Local Business",
-                "Tutorials Creator"]
+                "Tutorials Creator"],
+            required: [true, 'Category is required.']
         },
         pronouns: {
             type: String,
@@ -55,6 +59,7 @@ const userSchema = new Schema(
         ],
         password: {
             type: String,
+            required: [true, 'Password is required.']
         },
         images: [{
             type: String,
@@ -65,15 +70,21 @@ const userSchema = new Schema(
         cardData: {
             cardHolder: {
                 type: String,
+                // required: [true, 'Card Holder name is required.']
             },
             cardNumber: {
                 type: Number,
+                // required: [true, 'Card Number is required.'],
+                maxlength: [16, 'Card Number lenght must be 15 or 16'],
+                maxlength: [15, 'Card Number lenght must be 15 or 16']
             },
             expiringDate: {
                 type: Number,
+                // required: [true, 'Expiring date is required.']
             },
             cvv: {
                 type: Number,
+                // required: [true, 'Cvv is required.']
             },
         },
     },

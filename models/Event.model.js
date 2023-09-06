@@ -40,10 +40,6 @@ const eventSchema = new Schema(
             type: Date,
             required: [true, 'date is required.']
         },
-        organizer: {
-            type: Schema.Types.ObjectId,
-            ref: 'User'
-        },
     },
     {
         timestamps: true
