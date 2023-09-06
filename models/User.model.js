@@ -10,13 +10,16 @@ const userSchema = new Schema(
         role: {
             type: String,
             enum: ["USER", "CREATIVE", "ADMIN"],
+            required: [true, 'Role is required.']
         },
         avatar: {
             type: String,
             default: 'https://i.stack.imgur.com/l60Hf.png'
         },
         birth: {
-            type: Date
+            type: Date,
+            required: [true, 'Birth is required.']
+
         },
         category: {
             type: String,
@@ -30,7 +33,8 @@ const userSchema = new Schema(
                 "Podcast Creator",
                 "Non-profit",
                 "Local Business",
-                "Tutorials Creator"]
+                "Tutorials Creator"],
+            required: [true, 'Category is required.']
         },
         pronouns: {
             type: String,
@@ -55,6 +59,7 @@ const userSchema = new Schema(
         ],
         password: {
             type: String,
+            required: [true, 'Password is required.']
         },
         images: [{
             type: String,
