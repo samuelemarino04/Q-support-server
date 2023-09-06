@@ -12,10 +12,10 @@ const getAllSubscriptions = (req, res) => {
 
 const getSubscriptionsByOwner = (req, res, next) => {
 
-    const { owner_id } = req.params
+    const { owner_id: owner } = req.params
 
     Subscription
-        .find({ owner: owner_id })
+        .find({ owner })
         .sort({ createdAt: -1 })
         .then(response => res.json(response))
         .catch(err => next(err))
@@ -56,6 +56,7 @@ const editSubscription = (req, res, next) => {
 }
 
 const deleteSubscription = (req, res, next) => {
+
     const { subscription_id } = req.params
 
     Subscription
@@ -65,26 +66,26 @@ const deleteSubscription = (req, res, next) => {
 }
 
 const subscribe = (req, res, next) => {
+
     const { subscription_id } = req.params
-    const loggedUser = req.payload
+    const { _id: user_id } = req.payload
 
     Subscription
-        .findByIdAndUpdate(subscription_id, { $push: { clients: loggedUser._id } })
+        .findByIdAndUpdate(subscription_id, { $push: { clients: user_id } })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }
 
 const unsubscribe = (req, res, next) => {
+
     const { subscription_id } = req.params
-    const loggedUser = req.payload
+    const { _id: user_id } = req.payload
 
     Subscription
-        .findByIdAndUpdate(subscription_id, { $pull: { clients: loggedUser._id } })
+        .findByIdAndUpdate(subscription_id, { $pull: { clients: user_id } })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }
-
-
 
 
 module.exports = {

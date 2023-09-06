@@ -1,7 +1,7 @@
 const Subscription = require('../models/Subscription.model')
 const User = require('../models/User.model')
 
-const getAllUsers = (req, res) => {
+const getAllUsers = (req, res, next) => {
 
     User
         .find()
@@ -31,7 +31,9 @@ const saveUser = (req, res, next) => {
 }
 
 const deleteUser = (req, res, next) => {
+
     const { user_id } = req.params
+
     User
         .findByIdAndDelete(user_id)
         .then(response => res.json(response))
@@ -40,6 +42,7 @@ const deleteUser = (req, res, next) => {
 }
 
 const editProfile = (req, res, next) => {
+
     const { user_id } = req.params
     const userData = req.body
 
@@ -51,36 +54,36 @@ const editProfile = (req, res, next) => {
 
 const editCreative = (req, res, next) => {
 
-    const { id } = req.params
+    const { _id: user_id } = req.payload
     const { images } = req.body
+
     User
-        .findByIdAndUpdate(id, { $push: { images } })
+        .findByIdAndUpdate(user_id, { $push: { images } })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }
 
 const removePhotoCreative = (req, res, next) => {
 
-    const { _id } = req.payload
+    const { _id: user_id } = req.payload
     const { images } = req.body
 
     User
-        .findByIdAndUpdate(_id, { $pull: { images: images } })
+        .findByIdAndUpdate(user_id, { $pull: { images } })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }
 
 const getUserSubscriptions = (req, res, next) => {
 
-    const { _id } = req.payload
+    const { _id: user_id } = req.payload
 
     Subscription
-        .find({ clients: _id })
+        .find({ clients: user_id })
         .then(subscriptions => {
             res.json(subscriptions)
         })
         .catch(err => next(err))
-
 }
 
 module.exports = {

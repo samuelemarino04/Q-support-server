@@ -1,5 +1,4 @@
 const router = require("express").Router()
-const User = require('../models/User.model')
 const { verifyToken } = require("../middleware/verifyToken")
 
 const {

@@ -45,8 +45,9 @@ const saveEvent = (req, res, next) => {
 }
 
 const editEvent = (req, res, next) => {
+
     const { event_id } = req.params
-    const event = req.body
+    const event = req.body              // TODO: nunca usar req.body para una transacci'on por seguridad
 
     Event
         .findByIdAndUpdate(event_id, event)
@@ -57,7 +58,7 @@ const editEvent = (req, res, next) => {
 const joinEvent = (req, res, next) => {
 
     const { event_id } = req.params
-    const user_id = req.payload._id
+    const { _id: user_id } = req.payload
 
     Event
         .findByIdAndUpdate(event_id, { $addToSet: { attendees: user_id } })
@@ -68,7 +69,7 @@ const joinEvent = (req, res, next) => {
 const unjoinEvent = (req, res, next) => {
 
     const { event_id } = req.params
-    const user_id = req.payload._id
+    const { _id: user_id } = req.payload
 
     Event
         .findByIdAndUpdate(event_id, { $pull: { attendees: user_id } })
@@ -77,6 +78,7 @@ const unjoinEvent = (req, res, next) => {
 }
 
 const removeEvent = (req, res, next) => {
+
     const { event_id } = req.params
 
     Event

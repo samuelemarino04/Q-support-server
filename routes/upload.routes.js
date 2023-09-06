@@ -1,4 +1,3 @@
-//para subir imágenes a cloudinary  👇
 const router = require("express").Router()
 const uploaderMiddleware = require("../middleware/uploader.middleware")
 

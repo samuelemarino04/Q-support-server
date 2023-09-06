@@ -1,5 +1,7 @@
 const User = require('../models/User.model')
 
+// TODO: GESTIONAR SIEMPRE EXCEPCIONES CON next(err)
+
 const getAllCreatives = (req, res) => {
 
     User
@@ -23,6 +25,7 @@ const getFilteredCreatives = (req, res) => {
 }
 
 const getCreativesByCategory = (req, res) => {
+
     const { category } = req.query
 
     User
@@ -38,5 +41,4 @@ module.exports = {
     getAllCreatives,
     getFilteredCreatives,
     getCreativesByCategory
-
 }
