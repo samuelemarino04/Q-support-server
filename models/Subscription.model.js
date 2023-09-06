@@ -37,7 +37,6 @@ const subscriptionSchema = new Schema(
         },
         startDate: {
             type: Date,
-
         },
         endDate: {
             type: Date

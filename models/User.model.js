@@ -65,15 +65,29 @@ const userSchema = new Schema(
         cardData: {
             cardHolder: {
                 type: String,
+                maxlength: [30, 'Maximum name length is 24']
             },
             cardNumber: {
                 type: Number,
+                validate: {
+                    validator: function (value) {
+                        return value.toString().length === 16;
+                    },
+                    message: 'Card number must be 16 characters'
+                }
             },
             expiringDate: {
-                type: Number,
+                type: String,
+                maxlength: [5, 'Date length must be 4 in format MM/YY']
             },
             cvv: {
                 type: Number,
+                validate: {
+                    validator: function (value) {
+                        return value.toString().length === 16;
+                    },
+                    message: 'Card number must be 16 characters'
+                }
             },
         },
     },

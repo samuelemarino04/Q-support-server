@@ -71,7 +71,7 @@ const subscribe = (req, res, next) => {
     const { _id: user_id } = req.payload
 
     Subscription
-        .findByIdAndUpdate(subscription_id, { $push: { clients: user_id } })
+        .findByIdAndUpdate(subscription_id, { $addToSet: { clients: user_id } })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }
