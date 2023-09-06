@@ -5,7 +5,7 @@ const getAllSubscriptions = (req, res) => {
     Subscription
         .find()
         .sort({ createdAt: -1 })
-        .select({ title: 1, type: 1, price: 1, currency: 1, paymentFrequency: 1, description: 1, image: 1, owner: 1 })
+        .select({ title: 1, type: 1, price: 1, currency: 1, paymentFrequency: 1, description: 1, image: 1, owner: 1, startDate: 1, endDate: 1 })
         .then(response => res.json(response))
         .catch(err => next(err))
 }
@@ -34,12 +34,12 @@ const getOneSubscription = (req, res, next) => {
 
 const saveSubscription = (req, res, next) => {
 
-    const { title, type, price, currency, paymentFrequency, description, image } = req.body
+    const { title, type, price, currency, paymentFrequency, description, image, startDate, endDate } = req.body
     const { _id: owner } = req.payload
 
     Subscription
 
-        .create({ title, type, price, currency, paymentFrequency, description, image, owner })
+        .create({ title, type, price, currency, paymentFrequency, description, image, owner, startDate, endDate })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }
@@ -71,7 +71,7 @@ const subscribe = (req, res, next) => {
     const { _id: user_id } = req.payload
 
     Subscription
-        .findByIdAndUpdate(subscription_id, { $push: { clients: user_id } })
+        .findByIdAndUpdate(subscription_id, { $addToSet: { clients: user_id } })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }

@@ -10,13 +10,16 @@ const userSchema = new Schema(
         role: {
             type: String,
             enum: ["USER", "CREATIVE", "ADMIN"],
+            required: [true, 'Role is required.']
         },
         avatar: {
             type: String,
             default: 'https://i.stack.imgur.com/l60Hf.png'
         },
         birth: {
-            type: Date
+            type: Date,
+            required: [true, 'Birth is required.']
+
         },
         category: {
             type: String,
@@ -30,7 +33,8 @@ const userSchema = new Schema(
                 "Podcast Creator",
                 "Non-profit",
                 "Local Business",
-                "Tutorials Creator"]
+                "Tutorials Creator"],
+            required: [true, 'Category is required.']
         },
         pronouns: {
             type: String,
@@ -55,6 +59,7 @@ const userSchema = new Schema(
         ],
         password: {
             type: String,
+            required: [true, 'Password is required.']
         },
         images: [{
             type: String,
@@ -65,15 +70,29 @@ const userSchema = new Schema(
         cardData: {
             cardHolder: {
                 type: String,
+                maxlength: [30, 'Maximum name length is 24']
             },
             cardNumber: {
                 type: Number,
+                validate: {
+                    validator: function (value) {
+                        return value.toString().length === 16;
+                    },
+                    message: 'Card number must be 16 characters'
+                }
             },
             expiringDate: {
-                type: Number,
+                type: String,
+                maxlength: [5, 'Date length must be 4 in format MM/YY']
             },
             cvv: {
                 type: Number,
+                validate: {
+                    validator: function (value) {
+                        return value.toString().length === 16;
+                    },
+                    message: 'Card number must be 16 characters'
+                }
             },
         },
     },

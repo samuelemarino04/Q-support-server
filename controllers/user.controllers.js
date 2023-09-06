@@ -64,7 +64,6 @@ const editCreative = (req, res, next) => {
 }
 
 const editCardInfo = (req, res, next) => {
-    console.log("esto es lo que me lelga por reqbody", req.body)
     const { user_id } = req.params
     const { formData } = req.body
 
