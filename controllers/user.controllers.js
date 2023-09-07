@@ -66,7 +66,7 @@ const editCreative = (req, res, next) => {
 const editCardInfo = (req, res, next) => {
     const { user_id } = req.params
     const { formData } = req.body
-
+    console.log(req.body)
 
     const errors = []
 
@@ -79,7 +79,7 @@ const editCardInfo = (req, res, next) => {
     }
 
 
-    if (formData.cardNumber != 16) {
+    if (formData.cardNumber.length != 16) {
         errors.push("Card number must have 16 digits")
     }
 
@@ -89,7 +89,7 @@ const editCardInfo = (req, res, next) => {
     }
 
 
-    if (formData.expiringDate != 4) {
+    if (formData.expiringDate.length != 5) {
         errors.push("Expiring date must be 4 in format MM/YY")
     }
 
@@ -99,7 +99,7 @@ const editCardInfo = (req, res, next) => {
     }
 
 
-    if (formData.cvv != 3) {
+    if (formData.cvv.length != 3) {
         errors.push("CVV must have 3 digits")
     }
 
