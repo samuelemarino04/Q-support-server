@@ -23,7 +23,8 @@ const userSchema = new Schema(
         },
         category: {
             type: String,
-            enum: ["Web Developer",
+            enum: ["..",
+                "Web Developer",
                 "Musician",
                 "Visual artist",
                 "Writer",
@@ -38,21 +39,6 @@ const userSchema = new Schema(
         },
         pronouns: {
             type: String,
-        },
-        flag: {
-            type: String,
-            enum: [
-                "https://emojiflags.avris.it/flags/Asexual.png",
-                "https://emojiflags.avris.it/flags/Bisexual.png",
-                "https://emojiflags.avris.it/flags/Genderfluid.png",
-                "https://emojiflags.avris.it/flags/Intersex.png",
-                "https://emojiflags.avris.it/flags/Lesbian.png",
-                "https://emojiflags.avris.it/flags/Nonbinary.png",
-                "https://emojiflags.avris.it/flags/Pansexual.png",
-                "https://emojiflags.avris.it/flags/Progress_Pride.png",
-                "https://emojiflags.avris.it/flags/Queer.png",
-                "https://emojiflags.avris.it/flags/Transgender.png",
-            ]
         },
         email: {
             type: String,
