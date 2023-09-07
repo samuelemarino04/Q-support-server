@@ -44,7 +44,7 @@ const deleteUser = (req, res, next) => {
 const editProfile = (req, res, next) => {
 
     const { user_id } = req.params
-    const { userData } = req.body
+    const userData = req.body
 
     User
         .findByIdAndUpdate(user_id, userData)
