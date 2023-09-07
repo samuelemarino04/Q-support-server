@@ -67,6 +67,47 @@ const editCardInfo = (req, res, next) => {
     const { user_id } = req.params
     const { formData } = req.body
 
+
+    const errors = []
+
+    if (formData.cardHolder === '') {
+        errors.push("Provide card holder name")
+    }
+
+    if (formData.cardNumber === '') {
+        errors.push("Provide card number")
+    }
+
+
+    if (formData.cardNumber != 16) {
+        errors.push("Card number must have 16 digits")
+    }
+
+
+    if (formData.expiringDate === '') {
+        errors.push("Provide expiring date")
+    }
+
+
+    if (formData.expiringDate != 4) {
+        errors.push("Expiring date must be 4 in format MM/YY")
+    }
+
+
+    if (formData.cvv === '') {
+        errors.push("Provide CVV")
+    }
+
+
+    if (formData.cvv != 3) {
+        errors.push("CVV must have 3 digits")
+    }
+
+    if (errors.length != 0) {
+        res.status(400).json({ messages: errors })
+        return
+    }
+
     User
         .findByIdAndUpdate(user_id, { cardData: formData })
         .then(response => res.json(response))

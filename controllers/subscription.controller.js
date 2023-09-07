@@ -34,12 +34,12 @@ const getOneSubscription = (req, res, next) => {
 
 const saveSubscription = (req, res, next) => {
 
-    const { title, type, price, currency, paymentFrequency, description, image, startDate, endDate } = req.body
+    const { title, type, price, currency, paymentFrequency, description, image } = req.body
     const { _id: owner } = req.payload
 
     Subscription
 
-        .create({ title, type, price, currency, paymentFrequency, description, image, owner, startDate, endDate })
+        .create({ title, type, price, currency, paymentFrequency, description, image, owner })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }
