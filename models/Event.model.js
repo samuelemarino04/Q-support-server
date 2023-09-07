@@ -36,6 +36,10 @@ const eventSchema = new Schema(
             type: Schema.Types.ObjectId,
             ref: 'User',
         },
+        ownerName: {
+            type: Schema.Types.String,
+            ref: 'User'
+        },
         date: {
             type: Date,
             required: [true, 'date is required.']

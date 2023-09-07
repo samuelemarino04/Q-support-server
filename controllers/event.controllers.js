@@ -37,9 +37,10 @@ const saveEvent = (req, res, next) => {
 
     const { title, icon, description, address, location, date } = req.body
     const { _id: owner } = req.payload
+    const { username: ownerName } = req.payload
 
     Event
-        .create({ title, icon, description, address, location, date, owner })
+        .create({ title, icon, description, address, location, date, owner, ownerName })
         .then(() => res.sendStatus(200))
         .catch(err => next(err))
 }
