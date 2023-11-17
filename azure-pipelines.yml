@@ -10,6 +10,13 @@ pool:
   vmImage: ubuntu-latest
 
 steps:
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'node-room3servertoken'
+    scannerMode: 'CLI'
+    configMode: 'manual'
+    cliProjectKey: 'q-support-server-room3'
+    cliSources: '.'
 - task: NodeTool@0
   inputs:
     versionSpec: '10.x'
@@ -17,5 +24,33 @@ steps:
 
 - script: |
     npm install
-    npm run build
+    npm run build --if-present
   displayName: 'npm install and build'
+
+- task: SonarQubePublish@5
+  inputs:
+    pollingTimeoutSec: '300'
+
+- task: ArchiveFiles@2
+  inputs:
+    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Ironhack Subs(1)(b892ab8c-2c38-478a-8b8b-887ddc61d17d)'
+    appType: 'webAppLinux'
+    WebAppName: 'Q-support-server'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    RuntimeStack: 'NODE|18-lts'
+    StartupCommand: 'npm run start'
