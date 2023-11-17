@@ -9,6 +9,15 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+variables:
+  TOKEN_SECRET: krgjglerjtwpqierpsdinvl3ngogihownvon3goi
+  PORT: 5005
+  ORIGIN: http://localhost:5173
+  MONGODB_URI: "mongodb+srv://rodlop06:ctDq2y75SdpuF5U3@cluster0.7s82gqz.mongodb.net/"
+  CLOUDINARY_NAME: depxadgb3
+  CLOUDINARY_KEY: 516952131158793
+  CLOUDINARY_SECRET: WK2OgxMO5jROb8qFEJXB1YhAPgU
+
 steps:
 - task: SonarQubePrepare@5
   inputs:
