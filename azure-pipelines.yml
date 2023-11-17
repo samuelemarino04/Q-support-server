@@ -52,4 +52,4 @@ steps:
     WebAppName: 'Q-support-server'
     packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
     RuntimeStack: 'NODE|18-lts'
-    StartupCommand: 'npm run start'
+    StartupCommand: 'cd s; npm run start'
