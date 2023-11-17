@@ -50,6 +50,6 @@ steps:
     azureSubscription: 'Ironhack Subs(1)(b892ab8c-2c38-478a-8b8b-887ddc61d17d)'
     appType: 'webAppLinux'
     WebAppName: 'Q-support-server'
-    packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
     RuntimeStack: 'NODE|18-lts'
     StartupCommand: 'npm run start'
