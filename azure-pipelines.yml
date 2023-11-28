@@ -56,7 +56,7 @@ steps:
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
-    azureSubscription: 'Ironhack Subs(1)(b892ab8c-2c38-478a-8b8b-887ddc61d17d)'
+    azureSubscription: 'Ironhack Subs'
     appType: 'webAppLinux'
     WebAppName: 'Q-support-server'
     packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
