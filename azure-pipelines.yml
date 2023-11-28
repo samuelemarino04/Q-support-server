@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- main
+- master
 
 pool:
   vmImage: ubuntu-latest
@@ -19,13 +19,6 @@ variables:
   CLOUDINARY_SECRET: WK2OgxMO5jROb8qFEJXB1YhAPgU
 
 steps:
-- task: SonarQubePrepare@5
-  inputs:
-    SonarQube: 'node-room3servertoken'
-    scannerMode: 'CLI'
-    configMode: 'manual'
-    cliProjectKey: 'q-support-server-room3'
-    cliSources: '.'
 - task: NodeTool@0
   inputs:
     versionSpec: '18.x'
@@ -35,9 +28,6 @@ steps:
     npm install
   displayName: 'npm install and build'
 
-- task: SonarQubePublish@5
-  inputs:
-    pollingTimeoutSec: '300'
 
 - task: ArchiveFiles@2
   inputs:
